@@ -1,5 +1,7 @@
 easyrsa3-changes summary:
 
+========================================
+
 OpenSSL version 3 support:
 
 This comes down to two changes:
@@ -13,3 +15,49 @@ Level of change: Medium.
 A lot of new code but only minor change to old code.
 
 PR: https://github.com/OpenVPN/easy-rsa/pull/492
+This PR has good links to related commits and issues.
+
+========================================
+
+Support running 'easyrsa' from $PATH - #499 issue.
+
+There are a lot of links on #499 to related changes and issues.
+
+However, the core changes are as follows:
+
+1.  Put 'easyrsa' in the $PATH. eg. '/usr/bin'
+2.  Search defined locations:
+    "$PWD"
+		"${0%/*}"
+		'/etc/easy-rsa'
+		'/usr/share/easy-rsa'
+		'/usr/local/share/easy-rsa'
+    for:
+    'openssl-easyrsa.cnf', 'vars.example' and 'x509-types'
+
+3a.  If this is a new PKI then
+     copy 'openssl-easyrsa.cnf' to the PKI
+     and copy 'vars.example' to PKI
+     and copy PKI/vars.example to PKI/vars
+     and set $EASYRSA_EXT_DIR to the location of 'x509-types'
+     and makesslsafeconf (Which basically tests the internals)
+
+3b.  If this an existing PKI then
+     copy 'openssl-easyrsa.cnf' to the PKI
+     and copy 'vars.example' to PKI
+     DO NOT copy PKI/vars.example to PKI/vars
+     and set $EASYRSA_EXT_DIR to the location of 'x509-types'
+     and makesslsafeconf (Which basically tests the internals)
+
+This allows 'easyrsa' to be run from the $PATH and find all the
+required files to operate.
+
+It also promotes the use of the PKI folder for all data files
+but does not make changes to currently functional PKIs.
+
+These two changes are desired by easyrsa for future improvements.
+
+========================================
+
+More to come ..
+

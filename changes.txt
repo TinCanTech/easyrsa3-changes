@@ -1,5 +1,10 @@
 easyrsa3-changes summary:
 
+* OpenSSL v3 - Only in effect if v3 SSL is used.
+* Running easyrsa from path and install data fiiles to preferred locations.
+* Copy x509-types 'ca' and COMMON to CA generation.
+
+
 ========================================
 
 

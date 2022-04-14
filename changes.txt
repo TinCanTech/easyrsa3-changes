@@ -2,9 +2,15 @@ easyrsa3-changes summary:
 
 ========================================
 
-
+OpenSSL:
 * OpenSSL v3 - Only in effect if v3 SSL is used. Medium. (#492)
+
+
+Highly linked:
 * Running easyrsa from path and install data fiiles to preferred locations. Medium. (#499)
+* Introduce new vars_setup() regime. High. #528
+
+Other:
 * Copy x509-types 'ca' and COMMON to CA generation. Low. (#526)
 * Make gen_req() Always use EASYRSA_REQ_CN as intended (#524)
 
@@ -71,6 +77,30 @@ These two changes are desired by easyrsa for future improvements.
 
 Level of change: Medium.
 A lot of new code but only effects new PKIs.
+
+========================================
+
+
+Introduce new vars_setup() regime #528
+
+This allows running easyrsa from $PATH
+and packaging data files elsewhere.
+
+Basically, this change almost completely removes
+the previous version of vars_setup().
+
+
+See the PR for details.
+
+Level of change: High.
+A lot of new code and effects every use.
+
+Note: I took great care to get this right.
+Use of warnings not die for certain acceptable errors.
+Partially replacating an init-pki for every command to
+ensure that required files are Always found.
+This also tests all "pre-flight" requirements before
+launching what-ever command.
 
 ========================================
 

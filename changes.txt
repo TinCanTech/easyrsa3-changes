@@ -5,11 +5,13 @@ easyrsa3-changes summary:
 OpenSSL version 3 support:
 
 This comes down to two changes:
-- build-ca() had to have new openssl 3 code to build CA's.
+- build-ca() requires new openssl 3 code to build CA's.
   This code is only available to SSL v3 library not 1.x
-  - Introduction of `$no_password`
-    This sets either `-nodes` SSL-v1 or `-noenc` SSL-v3
-    to build certificates without a password.
+
+- Introduction of `$no_password`
+  This sets either `-nodes` SSL-v1 or `-noenc` SSL-v3
+  to build certificates without a password.
+  Effects all SSL libraries.
 
 Level of change: Medium.
 A lot of new code but only minor change to old code.

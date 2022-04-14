@@ -10,6 +10,10 @@ Highly linked:
 * Running easyrsa from path and install data fiiles to preferred locations. Medium. (#499)
 * Introduce new vars_setup() regime. High. #528
 
+
+
+*  Disallow use of single quote (') in vars file #530
+
 Other:
 * Copy x509-types 'ca' and COMMON to CA generation. Low. (#526)
 * Make gen_req() Always use EASYRSA_REQ_CN as intended (#524)
@@ -89,7 +93,6 @@ and packaging data files elsewhere.
 Basically, this change almost completely removes
 the previous version of vars_setup().
 
-
 See the PR for details.
 
 Level of change: High.
@@ -104,6 +107,20 @@ launching what-ever command.
 
 ========================================
 
+
+Disallow use of single quote (') in vars file #530
+
+Two parts:
+* Completely remove all (') from vars.example
+* If vars is in the PKI then grep for single quote
+  New PKIs will only have a (') if inserted by the user,
+  if vars not in the PKI folder then do not check.
+
+Level of change: Low.
+Should not effect any old PKI. Only ever issues a warning.
+
+========================================
+ 
 
 Use x509-types 'ca' and COMMON when building a CA
 

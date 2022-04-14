@@ -1,9 +1,12 @@
 easyrsa3-changes summary:
 
-* OpenSSL v3 - Only in effect if v3 SSL is used.
-* Running easyrsa from path and install data fiiles to preferred locations.
-* Copy x509-types 'ca' and COMMON to CA generation.
+========================================
 
+
+* OpenSSL v3 - Only in effect if v3 SSL is used. Medium. (#492)
+* Running easyrsa from path and install data fiiles to preferred locations. Medium. (#499)
+* Copy x509-types 'ca' and COMMON to CA generation. Low. (#526)
+* Make gen_req() Always use EASYRSA_REQ_CN as intended (#524)
 
 ========================================
 
@@ -81,6 +84,18 @@ This uses the same awk script which inserts "Extra Extensions" into
 config file, when building a CA.  Effects all new CAs but due to the
 fact that the default settings in these files are all commented out,
 this is a minor change.
+
+Level of change: Low.
+A little new code but only effects new CAs.
+
+========================================
+
+
+Make gen_req() Always use EASYRSA_REQ_CN as intended
+
+https://github.com/OpenVPN/easy-rsa/pull/524
+
+The PR is clear.
 
 Level of change: Low.
 A little new code but only effects new CAs.

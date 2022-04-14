@@ -2,7 +2,11 @@ easyrsa3-changes summary:
 
 ========================================
 
+
 OpenSSL version 3 support:
+
+PR: https://github.com/OpenVPN/easy-rsa/pull/492
+This PR has good links to related commits and issues.
 
 This comes down to two changes:
 - build-ca() requires new openssl 3 code to build CA's.
@@ -16,10 +20,8 @@ This comes down to two changes:
 Level of change: Medium.
 A lot of new code but only minor change to old code.
 
-PR: https://github.com/OpenVPN/easy-rsa/pull/492
-This PR has good links to related commits and issues.
-
 ========================================
+
 
 Support running 'easyrsa' from $PATH - #499 issue.
 
@@ -59,7 +61,25 @@ but does not make changes to currently functional PKIs.
 
 These two changes are desired by easyrsa for future improvements.
 
+Level of change: Medium.
+A lot of new code but only effects new PKIs.
+
 ========================================
 
-More to come ..
+
+Use x509-types 'ca' and COMMON when building a CA
+
+https://github.com/OpenVPN/easy-rsa/pull/526
+
+This uses the same awk script which inserts "Extra Extensions" into 
+'openssl-easyrsa.cnf', to insert "x509-types/ca" and COMMON into the
+config file, when building a CA.  Effects all new CAs but due to the
+fact that the default settings in these files are all commented out,
+this is a minor change.
+
+Level of change: Low.
+A little new code but only effects new CAs.
+
+========================================
+
 
